@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krittawat-web
+  labels:
+    app: apache
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: apache
+  template:
+    metadata:
+      labels:
+        app: apache
+    spec:
+      containers:
+        - name: php
+          image: php:7.3.17-apache-stretch
+#          imagePullPolicy: Never
+          ports:
+          - containerPort: 80
+          volumeMounts:
+          - name: hostvol
+            mountPath: /var/www/html/
+      volumes:
+        - name: hostvol
+          hostPath:
+            path: /data

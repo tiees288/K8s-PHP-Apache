@@ -1,0 +1,6 @@
+minikube start 
+minikube --ip="192.168.56.1" mount "d:\k8s\web-data:/data/"
+
+
+
+minikube kubectl -- exec -it krittawat-web-6bff6df9c9-dlm5l -- /bin/bash
